@@ -1,7 +1,10 @@
 export class StringCalculator {
-    add(numbers: string): number {
-        const result = parseInt(numbers);
+  add(numbers: string): number {
+    const [first, second] = numbers
+      .split(",")
+      .map((number) => parseInt(number))
+      .map((number) => (isNaN(number) ? 0 : number));
 
-        return isNaN(result) ? 0 : result;
-    }
+    return (first ?? 0) + (second ?? 0);
+  }
 }

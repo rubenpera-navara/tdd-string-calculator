@@ -1,33 +1,49 @@
-import {StringCalculator} from "./string-calculator";
+import { StringCalculator } from "./string-calculator";
 
 describe("StringCalculator", () => {
+  let stringCalculator: StringCalculator;
+
+  beforeEach(() => {
+    stringCalculator = new StringCalculator();
+  });
+
   describe("add", () => {
-    it("should return 0 for an empty string input", () => {
+    it("should return 0 for an empty string", () => {
       // Arrange
       const stringCalculator = new StringCalculator();
 
       // Act
       const result = stringCalculator.add("");
 
-            // Assert
-            expect(result).toBe(0);
-        });
+      // Assert
+      expect(result).toBe(0);
+    });
 
     it.each([
       [1, "1"],
       [5, "5"],
       [10, "10"],
-    ])(
-      'should return value of single number input',
-      (expected, number) => {
-        // Arrange
-        const stringCalculator = new StringCalculator();
+    ])("should return value of single number", (expected, number) => {
+      // Act
+      const result = stringCalculator.add(number);
 
-            // Act
-            const result = stringCalculator.add('1');
+      // Assert
+      expect(result).toBe(expected);
+    });
+  });
 
-            // Assert
-            expect(result).toBe(1);
-        });
-    })
-})
+  it.each([
+    [3, "1,2"],
+    [5, "3,2"],
+    [10, "7,3"],
+  ])(
+    "should return sum of two comma seperated numbers",
+    (expected, numbers) => {
+      // Act
+      const result = stringCalculator.add(numbers);
+
+      // Assert
+      expect(result).toBe(expected);
+    }
+  );
+});
