@@ -34,5 +34,13 @@ describe("StringCalculator", () => {
         expect(result).toBe(expected);
       }
     );
+
+    it('should return sum of multiple \n seperated numbers', () => {
+      // Act
+      const result = stringCalculator.add("1\n2\n2");
+
+      // Assert
+      expect(result).toBe(5);
+    });
   });
 });
