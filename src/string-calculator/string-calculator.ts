@@ -1,5 +1,7 @@
 export class StringCalculator {
-    add(_: string): number {
-        return 0;
+    add(numbers: string): number {
+        const result = parseInt(numbers);
+
+        return isNaN(result) ? 0 : result;
     }
 }
