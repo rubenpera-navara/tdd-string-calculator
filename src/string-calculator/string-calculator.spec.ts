@@ -30,20 +30,36 @@ describe("StringCalculator", () => {
       // Assert
       expect(result).toBe(expected);
     });
+
+    it.each([
+      [3, "1,2"],
+      [5, "3,2"],
+      [10, "7,3"],
+    ])(
+      "should return sum of two comma seperated numbers",
+      (expected, numbers) => {
+        // Act
+        const result = stringCalculator.add(numbers);
+
+        // Assert
+        expect(result).toBe(expected);
+      }
+    );
+
+    it.each([
+      [3, "1,1,1"],
+      [5, "1,2,2"],
+      [10, "1,2,3,4"],
+      [20, "1,2,3,4,4,6"],
+    ])(
+      "should return sum of multiple comma seperated numbers",
+      (expected, numbers) => {
+        // Act
+        const result = stringCalculator.add(numbers);
+
+        // Assert
+        expect(result).toBe(expected);
+      }
+    );
   });
-
-  it.each([
-    [3, "1,2"],
-    [5, "3,2"],
-    [10, "7,3"],
-  ])(
-    "should return sum of two comma seperated numbers",
-    (expected, numbers) => {
-      // Act
-      const result = stringCalculator.add(numbers);
-
-      // Assert
-      expect(result).toBe(expected);
-    }
-  );
 });
