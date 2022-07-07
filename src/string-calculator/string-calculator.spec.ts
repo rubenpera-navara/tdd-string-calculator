@@ -35,12 +35,17 @@ describe("StringCalculator", () => {
       }
     );
 
-    it('should return sum of multiple \n seperated numbers', () => {
+    it("should return sum of multiple \n seperated numbers", () => {
       // Act
       const result = stringCalculator.add("1\n2\n2");
 
       // Assert
       expect(result).toBe(5);
+    });
+
+    it("should throw if encounters two separators in a row", () => {
+      // Act + Assert
+      expect(() => stringCalculator.add("1,\n")).toThrow();
     });
   });
 });
